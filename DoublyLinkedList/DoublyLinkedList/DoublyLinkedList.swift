@@ -107,6 +107,20 @@ struct DoublyLinkedList<T: Equatable> {
         return deleted
     }
     
+    mutating func reverse() {
+        var now = head
+        while now != nil {
+            let nowNext = now?.next
+            now?.next = now?.prev
+            now?.prev = nowNext
+            now = now?.prev
+        }
+        
+        let nowHead = head
+        head = tail
+        tail = nowHead
+    }
+    
     
     func showAll() {
         var now = head

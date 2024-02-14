@@ -28,3 +28,6 @@ let deleteNode = list.delete(id: 6)
 print("deleted node: \(deleteNode?.id), \(deleteNode?.data)")
 list.showAll()
 
+print("reverse")
+list.reverse()
+list.showAll()
