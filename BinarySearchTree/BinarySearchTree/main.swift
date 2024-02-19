@@ -7,5 +7,11 @@
 
 import Foundation
 
-print("Hello, World!")
+var bst = BinarySearchTree<Int>()
 
+bst.insert(data: 10)
+bst.insert(data: 11)
+bst.insert(data: 8)
+bst.insert(data: 1)
+bst.insert(data: 3)
+bst.printChild(node: bst.root)
