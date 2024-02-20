@@ -9,9 +9,14 @@ import Foundation
 
 var bst = BinarySearchTree<Int>()
 
-bst.insert(data: 10)
-bst.insert(data: 11)
-bst.insert(data: 8)
-bst.insert(data: 1)
-bst.insert(data: 3)
+bst.insert(value: 10)
+bst.insert(value: 11)
+bst.insert(value: 8)
+bst.insert(value: 1)
+bst.insert(value: 3)
 bst.printChild(node: bst.root)
+
+print(bst.search(value: 11)) //true
+bst.search(value: 100) //false
+bst.search(value: 0) //false
+bst.search(value: 8) //true

@@ -10,24 +10,24 @@ import Foundation
 class BinarySearchTree<T: Comparable> {
     var root: Node<T>?
     
-    func insert(data: T) {
+    func insert(value: T) {
         guard let root = self.root else {
-            return self.root = Node(data: data)
+            return self.root = Node(data: value)
         }
         
         var node: Node = root
         
         while true {
-            if node.data > data {
+            if node.data > value {
                 if node.left == nil {
-                    node.left = Node(data: data)
+                    node.left = Node(data: value)
                     break
                 }else {
                     node = node.left!
                 }
             }else {
                 if node.right == nil {
-                    node.right = Node(data: data)
+                    node.right = Node(data: value)
                     break
                 }else {
                     node = node.right!
@@ -35,6 +35,17 @@ class BinarySearchTree<T: Comparable> {
             }
         }
             
+    }
+    
+    public func search(value:T) -> Bool {
+        var node: Node? = root
+        while node != nil {
+            if node!.data == value {
+                return true
+            }
+            node = node!.data > value ? node?.left : node?.right
+        }
+        return false
     }
     
     func printChild(node: Node<Int>?) {
