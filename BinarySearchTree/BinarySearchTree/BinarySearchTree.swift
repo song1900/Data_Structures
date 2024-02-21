@@ -7,10 +7,10 @@
 
 import Foundation
 
-class BinarySearchTree<T: Comparable> {
+struct BinarySearchTree<T: Comparable> {
     var root: Node<T>?
     
-    func insert(value: T) {
+    mutating func insert(value: T) {
         guard let root = self.root else {
             return self.root = Node(data: value)
         }
@@ -48,7 +48,7 @@ class BinarySearchTree<T: Comparable> {
         return false
     }
     
-    func remove(value: T) {
+    mutating func remove(value: T) {
         guard root == nil else {
             return
         }
@@ -115,12 +115,11 @@ class BinarySearchTree<T: Comparable> {
         return rightChild ?? parent
     }
     
-    
-    func printChild(node: Node<Int>?) {
-        if node == nil { return }
-        print("\(node!.data)의 왼쪽 자식 :\(node!.left?.data)")
-        print("\(node!.data)의 오른쪽 자식 :\(node!.right?.data)")
-        printChild(node: node!.left)
-        printChild(node: node!.right)
+}
+
+extension BinarySearchTree: CustomStringConvertible {
+    var description: String {
+        guard let root = root else { return "Empty tree"}
+        return String(describing: root)
     }
 }
