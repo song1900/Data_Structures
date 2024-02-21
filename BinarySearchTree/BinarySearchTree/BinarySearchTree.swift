@@ -37,7 +37,7 @@ struct BinarySearchTree<T: Comparable> {
             
     }
     
-    func search(value:T) -> Bool {
+    func contains(value:T) -> Bool {
         var node: Node? = root
         while node != nil {
             if node!.data == value {
@@ -49,7 +49,7 @@ struct BinarySearchTree<T: Comparable> {
     }
     
     mutating func remove(value: T) {
-        guard root == nil else {
+        guard root != nil else {
             return
         }
         

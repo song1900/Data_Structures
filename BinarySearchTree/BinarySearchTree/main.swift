@@ -17,11 +17,7 @@ bst.insert(value: 2)
 bst.insert(value: 5)
 print(bst)
 
-//print(bst.search(value: 11)) //true
-//bst.search(value: 100) //false
-//bst.search(value: 0) //false
-//bst.search(value: 8) //true
+print(bst.contains(value: 11)) //false
 
-//print("=================")
-//bst.remove(value: 3)
-//bst.printChild(node: bst.root)
+bst.remove(value: 4)
+print(bst)
