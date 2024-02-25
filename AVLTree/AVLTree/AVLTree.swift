@@ -8,6 +8,8 @@
 import Foundation
 
 struct AVLTree<T: Comparable> {
+    var root: AVLNode<T>?
+    
     private func isBalanced(_ node: AVLNode<T>) -> Bool {
         return abs(node.balanceFactor) != 2
     }
@@ -63,6 +65,26 @@ struct AVLTree<T: Comparable> {
         }else {
             return rightBalanced(node)
         }
+    }
+    
+    public mutating func insert(value: T) {
+        root = insert(from: root, value: value)
+    }
+        
+    private func insert(from node: AVLNode<T>?, value: T) -> AVLNode<T> {
+        guard var node = node else {
+            return AVLNode(value: value)
+        }
+        if value < node.value {
+            node.leftChild = insert(from: node.leftChild, value: value)
+        } else {
+            node.rightChild = insert(from: node.rightChild, value: value)
+        }
+        if !isBalanced(node) {
+            node = makeBalanced(node)
+        }
+        node.height = max(node.leftHeight, node.rightHeight) + 1
+        return node
     }
     
     
