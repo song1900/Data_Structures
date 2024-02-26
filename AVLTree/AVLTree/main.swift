@@ -19,4 +19,8 @@ avl.insert(value: 10)
 avl.insert(value: 11)
 avl.insert(value: 9)
 
-print(avl)
+print(avl.root!)
+
+print("---------------")
+avl.remove(8)
+print(avl.root!)

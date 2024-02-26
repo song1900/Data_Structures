@@ -87,5 +87,36 @@ struct AVLTree<T: Comparable> {
         return node
     }
     
+    public mutating func remove(_ value: T) {
+        root = remove(node: root, value: value)
+    }
+    
+    private func remove(node: AVLNode<T>?, value: T) -> AVLNode<T>? {
+        guard var node = node else {
+            return nil
+        }
+        if value == node.value {
+            if node.leftChild == nil && node.rightChild == nil {
+                return nil
+            }
+            if node.leftChild == nil {
+                return node.rightChild
+            }
+            if node.rightChild == nil {
+                return node.leftChild
+            }
+            node.value = node.rightChild!.min.value
+            node.rightChild = remove(node: node.rightChild, value: node.value)
+        } else if value < node.value {
+            node.leftChild = remove(node: node.leftChild, value: value)
+        } else {
+            node.rightChild = remove(node: node.rightChild, value: value)
+        }
+        if !isBalanced(node) {
+            node = makeBalanced(node)
+        }
+        node.height = max(node.leftHeight, node.rightHeight) + 1
+        return node
+    }
     
 }

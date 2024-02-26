@@ -30,6 +30,12 @@ class AVLNode<T:Comparable> {
     }
 }
 
+extension AVLNode {
+    var min: AVLNode {
+        return leftChild?.min ?? self
+    }
+}
+
 extension AVLNode : CustomStringConvertible {
     public var description: String {
         return diagram(for: self)
