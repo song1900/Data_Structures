@@ -47,4 +47,32 @@ struct MaxHeap {
         nodes.append(node)
         heapifyUp()
     }
+    
+    mutating private func heapifyDown() {
+        var index = 0
+        while hasLeftChild(index) {
+            let leftIndex:Int = getLeftChildIndex(index)
+            let rightIndex:Int = getRightChildIndex(index)
+            var biggerChildIndex = leftIndex
+            if hasRightChild(index) && nodes[leftIndex] < nodes[rightIndex] {
+                biggerChildIndex = rightIndex
+            }
+            
+            if nodes[index] > nodes[biggerChildIndex] {
+                break
+            } else {
+                nodes.swapAt(index, biggerChildIndex)
+            }
+            index = biggerChildIndex
+        }
+    }
+    
+    mutating func remove()  {
+        if nodes.isEmpty {
+            return
+        }
+        nodes.swapAt(0, nodes.count - 1)
+        nodes.removeLast()
+        heapifyDown()
+    }
 }
