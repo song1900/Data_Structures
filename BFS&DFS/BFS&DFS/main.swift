@@ -30,7 +30,14 @@ graph.addEdge(8, 1)
 graph.addEdge(8, 7)
 print(graph.adjacencyList)
 
+
 let startNode = 1
+
+print("===== BFS =====")
 let result = BFS(graph: graph, start: startNode)
 print("\(startNode): \(result)")
 
+
+print("===== DFS =====")
+let dfsResult = DFS(graph: graph, start: startNode)
+print("\(startNode): \(dfsResult)")
